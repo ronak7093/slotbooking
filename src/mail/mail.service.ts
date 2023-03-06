@@ -9,7 +9,8 @@ export class mailService {
   async sendUserConfirmation(user: User, token: string) {
     const url = `example.com/auth/confirm?token=${token}`;
     await this.mailerService.sendMail({
-      to: user.email,
+      to: 'ronak.s@upsquare.in',
+      from: 'ronak.s@upsquare.in',
       subject: 'forgot password',
       template: '/src/user/resource/forgotPassword.html',
       context: {
