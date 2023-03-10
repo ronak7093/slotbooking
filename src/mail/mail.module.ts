@@ -1,10 +1,12 @@
 import { MailerModule } from '@nestjs-modules/mailer';
 import { Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import path from 'path';
 import { join } from 'path';
 import { User } from 'src/user/entities/user.entity';
 import { mailService } from './mail.service';
 import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
+
 @Module({
   imports: [
     MailerModule.forRootAsync({
@@ -25,7 +27,7 @@ import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handleba
         },
         preview: true,
         template: {
-          dir: join(__dirname, 'src/user/resource/forgotPassword.html'),
+          dir: process.cwd() + '/resource',
           adapter: new HandlebarsAdapter(),
           options: {
             strict: true,
